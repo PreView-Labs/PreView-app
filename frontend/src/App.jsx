@@ -17,9 +17,11 @@ const App = () => {
     return (
         <>
             <h1>Side Project: AI Interviewer</h1>
-            <div className="card">
+            <div style={{ padding: '20px', border: '1px solid #ccc', borderRadius: '10px' }}>
                 <h2>서버 응답 결과:</h2>
-                <p style={{ color: 'blue', fontWeight: 'bold' }}>{message}</p>
+                <p style={{ color: 'blue', fontWeight: 'bold', fontSize: '20px' }}>
+                    {message}
+                </p>
             </div>
         </>
     );
