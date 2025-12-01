@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import './App.css';
 
 const App = () => {
     const [message, setMessage] = useState("백엔드 연결 대기 중...");
