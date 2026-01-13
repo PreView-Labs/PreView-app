@@ -1,29 +1,23 @@
-import { useEffect, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import LandingPage from './pages/LandingPage';
+import Dashboard from './pages/Dashboard';
+import InterviewSetup from './pages/InterviewSetup';
+import InterviewRoom from './pages/InterviewRoom';
+import ResultReport from './pages/ResultReport';
+import Layout from './components/common/Layout'; // 헤더 등을 포함한 레이아웃
 
 const App = () => {
-    const [message, setMessage] = useState("백엔드 연결 대기 중...");
-
-    useEffect(() => {
-        // 도메인 없이 '/api/...'
-        fetch('/api/hello')
-            .then(response => response.text())
-            .then(data => setMessage(data))
-            .catch(error => {
-                console.error('Error:', error);
-                setMessage("백엔드 연결 실패 ㅠㅠ");
-            });
-    }, []);
-
     return (
-        <>
-            <h1>Side Project: AI Interviewer</h1>
-            <div style={{ padding: '20px', border: '1px solid #ccc', borderRadius: '10px' }}>
-                <h2>서버 응답 결과:</h2>
-                <p style={{ color: 'blue', fontWeight: 'bold', fontSize: '20px' }}>
-                    {message}
-                </p>
-            </div>
-        </>
+        <Routes>
+            <Route path="/" element={<LandingPage />} />
+            {/* 로그인 후 접근 가능한 페이지들 (Layout 적용) */}
+            <Route element={<Layout />}>
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/interview/setup" element={<InterviewSetup />} />
+                <Route path="/interview/room/:id" element={<InterviewRoom />} />
+                <Route path="/interview/result/:id" element={<ResultReport />} />
+            </Route>
+        </Routes>
     );
 };
 
